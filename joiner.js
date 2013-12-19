@@ -76,16 +76,35 @@
         return this;
     };
 
-    var dataMethods = ['html', 'text'];
+    var dataMethods = ['html', 'text', 'css'];
     var i, n = dataMethods.length;
     for (i = -1; ++i < n;) {
         $.fn['_' + dataMethods[i]] = data1(dataMethods[i]);
     }
+
     function data1(fn) {
-        return function(get) {
+        return function() {
+            var args = [];
+            for (var i = 0; i < arguments.length; i++) {
+                args[i] = functor(arguments[i]);
+            }
             this.each(function() {
-                $(this)[fn](get($(this)[0].__data__));
+                var vals = [];
+                for (var i = 0; i < args.length; i++) {
+                    vals[i] = args[i].call(this, $(this)[0].__data__);
+                }
+                $(this)[fn].apply($(this), vals);
             });
+            return this;
         };
+    }
+
+    function functor(_) {
+        if (typeof _ === 'function') return _;
+        else {
+            return function() {
+                return _;
+            };
+        }
     }
 })(jQuery);

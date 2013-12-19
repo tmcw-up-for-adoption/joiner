@@ -28,4 +28,7 @@ join
 join
     ._text(function(d) {
         return 'hi ' + d;
+    })
+    ._css('opacity', function(d) {
+        return d / 2;
     });
