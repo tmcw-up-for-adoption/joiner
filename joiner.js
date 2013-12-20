@@ -76,7 +76,9 @@
         return this;
     };
 
-    var dataMethods = ['html', 'text', 'css'];
+    // Mixin data-driven variations of general getter/setters
+    // http://api.jquery.com/category/manipulation/general-attributes/
+    var dataMethods = ['html', 'text', 'css', 'attr', 'prop'];
     var i, n = dataMethods.length;
     for (i = -1; ++i < n;) {
         $.fn['_' + dataMethods[i]] = data1(dataMethods[i]);

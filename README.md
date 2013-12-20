@@ -21,7 +21,7 @@ Same as `d3.data()`
 
 Same as `d3.enter()`, `d3.exit()`
 
-data-driven functions: `_html`, `_text`, `_css`.
+data-driven functions: `_html`, `_text`, `_css`, `_attr`, `_prop`.
 
 ## example
 
